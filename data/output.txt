@@ -1,0 +1,32 @@
+Vizualizare calatorie:
+======================
+   Statii:    0    1    2    3    4 
+Locul # 0:    1    1    1    1    0 
+Locul # 1:    5    6    6   16    0 
+Locul # 2:    0   11   11   17    0 
+Locul # 3:    2    2    2   18    0 
+Locul # 4:    3    3    3   19    0 
+Locul # 5:    4    4    4    4    0 
+Locul # 6:    0    7    7    7    0 
+Locul # 7:    0    0   12   20    0 
+Locul # 8:    0    8    8    0    0 
+
+
+Bilete cumparate:
+=================
+Bilet # 0: Om -    1, Sursa -  0, Destinatie -  4, Loc -  0.
+Bilet # 1: Om -    6, Sursa -  1, Destinatie -  3, Loc -  1.
+Bilet # 2: Om -   11, Sursa -  2, Destinatie -  3, Loc -  2.
+Bilet # 3: Om -   16, Sursa -  3, Destinatie -  4, Loc -  1.
+Bilet # 4: Om -    2, Sursa -  0, Destinatie -  3, Loc -  3.
+Bilet # 5: Om -    3, Sursa -  0, Destinatie -  3, Loc -  4.
+Bilet # 6: Om -    4, Sursa -  0, Destinatie -  4, Loc -  5.
+Bilet # 7: Om -    5, Sursa -  0, Destinatie -  1, Loc -  1.
+Bilet # 8: Om -    7, Sursa -  1, Destinatie -  4, Loc -  6.
+Bilet # 9: Om -   12, Sursa -  2, Destinatie -  3, Loc -  7.
+Bilet #10: Om -    8, Sursa -  1, Destinatie -  3, Loc -  8.
+Bilet #11: Om -   17, Sursa -  3, Destinatie -  4, Loc -  2.
+Bilet #12: Om -   18, Sursa -  3, Destinatie -  4, Loc -  3.
+Bilet #13: Om -   11, Sursa -  1, Destinatie -  2, Loc -  2.
+Bilet #14: Om -   19, Sursa -  3, Destinatie -  4, Loc -  4.
+Bilet #15: Om -   20, Sursa -  3, Destinatie -  4, Loc -  7.
