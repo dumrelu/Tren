@@ -17,9 +17,11 @@
 //Printeaza pe buffer
 #ifdef PRINT_BILETE
 #define PRINT_ON_BUFFER(where, n, howMany, what) \
-	howMany = snprintf(where, n, "%s", what); \
-	where += howMany; \
-	n -= howMany;
+	if(n > 0) { \
+		howMany = snprintf(where, n, "%s", what); \
+		where += howMany; \
+		n -= howMany; \
+	}
 #endif
 
 //Buffer folosit pentru desenare
@@ -111,7 +113,7 @@ void _output_info_tren(buffer_t buffer, tren_t *tren, int offset)
 #ifdef PRINT_BILETE				//TODO: refactor
 	//Printare pe buffer
 	char *where = buffer.screen[offset+3];
-	unsigned int n = buffer.n_coloane;
+	int n = buffer.n_coloane;
 	unsigned int howMany, statie;
 	char format_statie[10];
 
@@ -122,7 +124,7 @@ void _output_info_tren(buffer_t buffer, tren_t *tren, int offset)
 		nrBileteStatii[statie] = 0;
 
 	//Printeaza mesaj informare
-	PRINT_ON_BUFFER(where, n, howMany, "Statie(nrBilete): ");
+	PRINT_ON_BUFFER(where, n, howMany, "S(bilete): ");
 
 	//Calculeaza numarul de bilete din fiecare statie
 	for(it = tren->bilete; it != NULL; it = it->next)
