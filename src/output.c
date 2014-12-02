@@ -71,6 +71,11 @@ unsigned int **_output_locuri_vagon(animatie_t *a_vagon, unsigned int *ret_n_loc
 				indici[n_locuri_vagon-1][1] = j;
 			}
 
+	//Sterge X-urile din animatie
+	for(i = 0; i < a_vagon->n_frames; ++i)
+		for(j = 0; j < n_locuri_vagon; ++j)
+			a_vagon->frames[i][indici[j][0]][indici[j][1]] = ' ';
+
 	//Returneaza rezultatele
 	*ret_n_locuri_vagon = n_locuri_vagon;
 	return indici;
@@ -102,7 +107,7 @@ void _output_info_tren(buffer_t buffer, tren_t *tren, int offset)
 	snprintf(buffer.screen[offset+1], buffer.n_coloane, "Viteaza: %u km/h", tren->cspeed);
 
 	//Legenda
-	snprintf(buffer.screen[offset+2], buffer.n_coloane, "L - Liber, O - Ocupat, X - Invalid.");
+	snprintf(buffer.screen[offset+2], buffer.n_coloane, "L - Liber, Numar - Statie urcare.");
 
 #ifdef PRINT_BILETE				//TODO: refactor
 	//Printare pe buffer
@@ -281,7 +286,7 @@ void output_run(output_t *output)
 		sleep_time = (delay < sleep_time) ? sleep_time - delay : 0;
 
 		//Avanseaza animatiile
-		unsigned int delta = sleep_time * procent_viteza;		//timpul de dormit scalat cu procentul vitezei
+		unsigned int delta = (sleep_time + delay) * procent_viteza;		//timpul de dormit scalat cu procentul vitezei
 		animatie_step(a_locomotiva, delta);
 		animatie_step(a_vagon, delta);
 

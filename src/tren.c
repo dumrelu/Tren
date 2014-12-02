@@ -15,6 +15,9 @@ void *_thread_tren(void *tren_ptr);
 //Cate ms sunt intr-o ora
 #define MS_H 500
 
+//Cu cat accelereaza trenul
+#define ACCELERATIE 2
+
 //TODO: micsoreaza latime cache cu 1?
 tren_t *tren_create(unsigned int n_locuri, unsigned int n_statii,
 		unsigned int *distante, unsigned int max_speed)
@@ -254,8 +257,9 @@ void *_thread_tren(void *tren_ptr)
 		pthread_mutex_lock(&tren->m_tren);
 
 		//Accelereaza
-		if(tren->cspeed < tren->mspeed)
-			++tren->cspeed;
+		if(tren->cspeed < tren->mspeed) {
+			tren->cspeed = (tren->cspeed + ACCELERATIE) <= tren->mspeed ? tren->cspeed + ACCELERATIE : tren->mspeed;
+		}
 
 		//Parcurge distanta
 		tren->dist_next = (tren->dist_next < tren->cspeed) ? 0 : tren->dist_next - tren->cspeed;
