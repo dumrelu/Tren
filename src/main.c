@@ -39,7 +39,7 @@ void *ghiseu_thread(void *arg)
 		if(!cumpara_bilet(argument->tren, argument->generator++, argument->statia, destinatie))
 			--i;
 
-		//Dormi un timp aleator
+		//Dormi un timp aleator TODO: timp minim mai bun
 		unsigned int timp_aleator = argument->statia * TIMP_ASTEPTAT_STATIE * 100 + argument->max_sleep/2 +
 									TIMP_MINIM * (argument->statia+1) +
 									rand_r(&argument->seed)%argument->max_sleep;

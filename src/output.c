@@ -46,6 +46,8 @@ output_t *output_create(tren_t *tren, const char *locomotiva, const char *vagon,
 }
 
 //Determina numarul de locuri si indici locurilor dintr-un vagon
+//TODO: Fa a.i. X-urile vecine sa fie considerate ca un singur loc
+//TODO: Refactor, poate o structura care sa tina informatiile despre locuri?
 unsigned int **_output_locuri_vagon(animatie_t *a_vagon, unsigned int *ret_n_locuri_vagon)
 {
 	//Asigura-te ca exista cel putin 1 frame in animatie
@@ -89,9 +91,6 @@ void _output_clear_buffer(buffer_t buffer)
 	for(i = 0; i < buffer.n_linii; ++i)
 		for(j = 0; j < buffer.n_coloane; ++j)
 			buffer.screen[i][j] = ' ';
-
-	//Sterge ecranul
-	system("clear");
 }
 
 //Printeaza informatii despre tren, maxim NR_LINII_SUPLIMENTARE linii
@@ -117,7 +116,7 @@ void _output_info_tren(buffer_t buffer, tren_t *tren, int offset)
 	char format_statie[10];
 
 	//Determinare numar bilete
-	bilet_t *it;
+	const bilet_t *it;
 	unsigned int *nrBileteStatii = malloc(tren->n_statii * sizeof(unsigned int));
 	for(statie = 0; statie < tren->n_statii; ++statie)
 		nrBileteStatii[statie] = 0;
@@ -141,8 +140,13 @@ void _output_info_tren(buffer_t buffer, tren_t *tren, int offset)
 #endif
 }
 
+//Sterge ecranul si deseneaza bufferul pe ecran
 void _output_print_buffer(buffer_t buffer)
 {
+	//Sterge ecranul
+	system("clear");
+
+	//Deseneaza buffer-ul pe ecran
 	int i, j;
 	for(i = 0; i < buffer.n_linii; ++i) {
 		for(j = 0; j < buffer.n_coloane; ++j)
@@ -196,7 +200,7 @@ int _output_draw(buffer_t buffer, tren_t *tren,
 		if(tren->cache_locuri[i][tren->cstatie] == 0)
 			c = 'L';
 		else {
-			//TODO: determina statia
+			//TODO: vezi _output_locuri_vagon
 			statie_t statie = 0;
 
 			const bilet_t *it;
